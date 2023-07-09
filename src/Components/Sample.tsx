@@ -1,28 +1,34 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 function Sample() {
-  const [show, setShow] = useState(false);
-  const count = useRef(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
   const handleClick = () => {
-    count.current += 1;
+    alert(inputRef.current?.value);
   };
-
-  useEffect(() => {
-    console.log("update");
-  });
 
   return (
     <div>
-      Sample <br /> <button onClick={handleClick}>click</button>{" "}
+      Sample <br />
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>Show Alert</button>
+      <div
+        ref={boxRef}
+        style={{
+          backgroundColor: "blue",
+          height: Math.random() * 300,
+          width: Math.random() * 1000,
+        }}
+      ></div>
+      <br />
       <button
         onClick={() => {
-          setShow((prev) => !prev);
+          console.log("height", boxRef.current?.clientHeight);
+          console.log("width", boxRef.current?.clientWidth);
         }}
       >
-        Show Count
+        getSize
       </button>
-      <br />
-      {show ? count.current : null}
     </div>
   );
 }
