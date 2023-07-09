@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { SampleContext } from "../App";
+import { useSample } from "../libs/useSample";
 
 function Comp4() {
-  const { value } = useContext(SampleContext);
+  const { value } = useSample();
   return <div>Comp4: {value}</div>;
 }
 
